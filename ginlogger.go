@@ -45,7 +45,7 @@ func Logger() gin.HandlerFunc {
 		if len(c.Errors) > 0 {
 			logs.Error(c.Errors.ByType(gin.ErrorTypePrivate).String())
 		} else {
-			msg := fmt.Sprintf("%s - %s [%s] \"%s %s\" %d %d \"%s\" \"%s\" (%dms)", clientIP, hostname, time.Now().Format(timeFormat), c.Request.Method, path, statusCode, dataLength, referer, clientUserAgent, latency)
+			msg := fmt.Sprintf("clientIP:%s - hostname:%s time:[%s] \"Method:%s path:%s\" statusCode:%d dataLength:%d \"referer:%s\" \"clientUserAgent:%s\" latency:(%dms)", clientIP, hostname, time.Now().Format(timeFormat), c.Request.Method, path, statusCode, dataLength, referer, clientUserAgent, latency)
 			if statusCode >= http.StatusInternalServerError {
 				logs.Error(msg)
 			} else if statusCode >= http.StatusBadRequest {
